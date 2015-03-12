@@ -74,7 +74,7 @@ module Eyemask
     end
 
     def features_from_json(contents)
-      JSON.parse(contents)
+      JSON.parse(contents).sort{|a, b| a["uri"] <=> b["uri"] }
     end
 
   end

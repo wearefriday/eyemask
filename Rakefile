@@ -29,7 +29,7 @@ begin
 
 end
 
-task :test => [:specs, :features]
+task :test => [:build,:install,:specs, :features]
 
 
 task :default => :test

@@ -27,6 +27,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "cucumber", "~> 1.1.1"
   spec.add_development_dependency "aruba", "~> 0.6.2"
   spec.add_development_dependency "rspec", "~> 3.2"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "pry-byebug"
   spec.add_runtime_dependency "multi_json", "~> 1.11.0"
   spec.add_runtime_dependency "thor", "~> 0.19.1"
   spec.add_runtime_dependency "redcarpet", "~> 3.2.2"

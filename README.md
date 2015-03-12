@@ -48,8 +48,6 @@ This list of options is likely to grow as we expand the use-cases of the tool.
 
 Here are some of the features that are planned for the future (in no particular order):
 
-- Feature sorting by filename.
-
 - Named default templates (e.g. 'markdown', 'html', 'princexml') to make Eyemask more powerful out of the box.
 
 - Introductory materials as Markdown, to explain more about the project.
