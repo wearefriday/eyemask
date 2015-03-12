@@ -5,56 +5,8 @@ module Eyemask
 
   class Converter
 
-    ONE_PAGE_TEMPLATE = <<-EOF.gsub(/^ {6}/, '')
-      ---
-      title: {{title}}
-      {%if subtitle %}subtitle: {{subtitle}} {% endif %}
-      ---
-
-      # Features
-
-      {% if contents == empty %}
-      No features have been specified.
-      {% endif %}
-
-      {% for feature in contents %}
-      ## {{feature.name}}
-
-      {% relevel 2 %}
-      {{feature.description | uml }}
-      {% endrelevel %}
-
-      {% for scenario in feature.elements %}
-      ### {{ scenario.name }}
-
-      {% relevel 3 %}
-      {{scenario.description | uml }}
-      {% endrelevel %}
-
-      {% for step in scenario.steps %}
-        - **{{step.keyword | strip}}** {{step.name}}
-      {% if step.doc_string %}{% indent 4 %}
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      {{ step.doc_string.value }}
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      {% endindent %}{% endif %}
-      {% if step.rows %}{% indent 4 %}{% for row in step.rows %}
-        | {% for cell in row.cells %}{{ cell }} | {% endfor %}{% if forloop.first %}
-        |{% for i in row.cells %}---|{% endfor %}{% endif %}{% endfor %}{% endindent %}{% endif %}
-      {% endfor %}
-
-      {% endfor %}
-
-      {% endfor %}
-    EOF
-
     def initialize(initiaizer_options={})
-      template = initiaizer_options[:template]
-      if template
-        @template = ::Liquid::Template.parse(template)
-      else
-        @template = ::Liquid::Template.parse(ONE_PAGE_TEMPLATE)
-      end
+      @template = ::Liquid::Template.parse(template(initiaizer_options[:template]))
     end
 
     def convert(contents, options={})
@@ -62,6 +14,19 @@ module Eyemask
         params = render_params(contents,options)
         @template.render(params, registers: params).strip
       end
+    end
+
+    def template(template)
+      case template
+      when "markdown"
+        File.open(template_file("markdown.md")).read
+      else
+        File.open(File.expand_path(template)).read
+      end
+    end
+
+    def template_file(filename)
+      File.join(File.dirname(File.expand_path(__FILE__)), "../../templates/#{filename}")
     end
 
     def render_params(contents, options)
