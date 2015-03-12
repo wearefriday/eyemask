@@ -16,13 +16,17 @@ module Eyemask
       puts Converter.new(init_opts).convert(contents, options)
     end
 
-    def contents(file_name)
-      case file_name
-      when "-"
-        STDIN.read
-      else
-        File.open(file_name).read
+    no_commands do
+
+      def contents(file_name)
+        case file_name
+        when "-"
+          STDIN.read
+        else
+          File.open(file_name).read
+        end
       end
+      
     end
 
   end
