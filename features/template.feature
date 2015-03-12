@@ -22,3 +22,15 @@ Feature: Custom templates
       """html
       <h1>Specification</h1>
       """
+
+  Scenario: Run Eyemask with a named template
+    Given a file named "cucumber_output.json" with:
+      """json
+        []
+      """
+    When I run Eyemask on "cucumber_output.json" with the template: "princexml"
+    Then the exit status should be 0
+    And the output should contain:
+      """html
+      <h1 class="doctitle">Specification</h1>
+      """

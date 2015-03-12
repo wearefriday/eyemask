@@ -20,6 +20,8 @@ module Eyemask
       case template
       when "markdown"
         File.open(template_file("markdown.md")).read
+      when "princexml"
+        File.open(template_file("princexml.html")).read
       else
         File.open(File.expand_path(template)).read
       end

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{params.client}}: {{params.project}} {{title}}</title>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,700,400italic,700italic,900,900italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+  <style>
+    /***** BASELINE *****/
+      html {
+        font-size: 11pt;
+      }
+
+      body {
+        font-family: 'Merriweather', serif;
+        font-size: 2.4rem;
+        line-height: 1.6875;
+      }
+
+      h1,h2,h3,h4 {
+        font-family: 'Merriweather', serif;
+        margin: 0 0 16.875pt 0;
+      }
+
+      h1 {
+        font-size: 37.125pt;
+        font-weight: normal;
+      }
+
+      h2 {
+        font-size: 24.75pt;
+        font-weight: normal;
+      }
+
+      h3 {
+        font-size: 16.5pt;
+        font-weight: normal;
+      }
+
+      h4 {
+        font-size: 11pt;
+      }
+
+    title {
+      string-set: title content();
+    }
+
+    .resolution-print {
+      prince-image-resolution: 300dpi;
+    }
+
+    /***** COVER *****/
+
+    #cover {
+      padding-top: 33.75pt;
+    }
+
+    #cover .client {
+      border-bottom: 1pt solid #999;
+      margin-bottom: 0 !important;
+      letter-spacing: 0.2em;
+      font-family: 'Merriweather', serif;
+      font-size: 24.75pt;
+      font-variant: small-caps;
+    }
+
+    .doctitle {
+      font-family: 'Merriweather', serif;
+      font-size: 37.125pt;
+      font-weight: normal;
+      border-bottom: 1pt solid #999;
+      margin-top: 0 !important;
+    }
+
+    .version {
+      font-family: 'Merriweather', serif;
+      font-size: 16.875pt;
+      font-variant: small-caps;
+      font-weight: normal;
+    }
+
+    .authors::before {
+      display: block;
+      content: "Compiled by:";
+      font-size: 7.26pt;
+      font-weight: 200;
+      font-variant: small-caps;
+      letter-spacing: 0.2em;
+    }
+    .authors {
+      font-family: 'Merriweather', serif;
+      font-size: 11pt;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .authors li {
+      padding-bottom: 2.6pt;
+      font-weight: 600;
+    }
+
+    .publisher {
+      font-family: "Cooper Black";
+      font-size:37.125pt;
+      text-transform: lowercase;
+      position: absolute;
+      bottom: 0;
+    }
+
+    /***** TABLE OF CONTENTS *****/
+
+    #frontmatter .chapter h2 {
+      string-set: header content();
+    }
+
+    .toc ol {
+      list-style: none;
+    }
+
+    .toc a {
+      text-decoration: none;
+    }
+
+    .toc a[href]::after { 
+      content: leader(".") target-counter(attr(href), page) 
+    }
+
+    .toc ol a[href]::before {
+      content: target-counter(attr(href), feature) ". ";
+    }
+
+    .toc ol ol a[href]::before {
+      content: target-counter(attr(href), feature) "." target-counter(attr(href), scenario) ". ";
+    }
+
+    /***** PARTS *****/
+
+    .part {
+      counter-increment: part;
+      counter-reset: feature 1 scenario;
+    }
+    .part h1 {
+      text-align: center;
+      margin-top: 88mm;
+      font-weight: normal;
+      font-variant: small-caps;
+    }
+
+    .part h1::before {
+      display: block;
+      margin: 0 auto;
+      font-size: 24.75pt;
+      font-weight: 200;
+      content: counter(part, upper-roman);
+    }
+
+    /***** FEATURES *****/
+
+    .feature + .feature {
+      counter-increment: feature;
+      counter-reset: scenario;
+    }
+
+    .feature header h2 {
+      page-break-after: avoid;
+      margin-top: 33.75pt;
+      font-weight: normal;
+      string-set: header "Feature " counter(feature) ". " content();
+    }
+
+    .feature h2::before {
+      page-break-after: avoid;
+      display: block;
+      margin: 0 auto;
+      font-size: 16.5pt;
+      font-variant: small-caps;
+      content: "Feature " counter(feature) "." ;
+      letter-spacing: 0.2em;
+    }
+
+    .scenario {
+      counter-increment: scenario;
+      margin-bottom: 16.875pt;
+    }
+    .scenario h3 {
+      page-break-after: avoid;
+      font-weight: normal;
+    }
+
+    .scenario h3::before {
+      page-break-after: avoid;
+      display: block;
+      margin: 0 auto;
+      font-size: 11pt;
+      font-variant: small-caps;
+      content: "Scenario " counter(feature) "." counter(scenario) ". ";
+      letter-spacing: 0.2em;
+    }
+
+    .steps ol {
+      margin-left: 0;
+      list-style: lower-roman;
+    }
+
+    .steps ol li p {
+      margin-top: 0 !important;
+    }
+
+    .steps ol li p:only-child {
+      margin: 0;
+    }
+
+    .docstring {
+      page-break-before: avoid;
+    }
+
+    .steptable {
+      page-break-before: avoid;
+    }
+
+    /***** MATTER *****/
+
+    #cover {
+      page: blank;
+    }
+
+    #frontmatter {
+      page: frontmatter;
+      page-break-before: right;
+    }
+
+    #mainmatter {
+      page: auto;
+      counter-reset: page 1;
+    }
+
+    /***** SECTIONS *****/
+      .part {
+        page-break-before: right;
+        page: blank;
+      }
+      .feature {
+        page-break-before: right;
+        page: auto;
+      }
+    /***** PAGES *****/
+
+    @page {
+      size: a4;
+      margin: 33mm 23.33mm 66mm 46.66mm;
+    }
+
+    @page :left {
+      margin: 33mm 23.33mm 66mm 46.66mm;
+      @top-left {
+        font: 11pt 'Merriweather', serif;
+        content: string(title);
+        font-variant: small-caps;
+        vertical-align: bottom;
+        padding-bottom: 2em;
+      }
+
+      @bottom-left {
+        font: 11pt 'Merriweather', serif;
+        content: counter(page);
+        padding-top: 2em;
+        vertical-align: top;
+      }
+    }
+
+    @page :right {
+      margin: 33mm 46.66mm 66mm 23.33mm;
+      @top-right {
+        font: 11pt 'Merriweather', serif;
+        font-variant: small-caps;
+        content: string(header, first); 
+        vertical-align: bottom;
+        padding-bottom: 2em; 
+      }
+
+      @bottom-right {
+        font: 11pt 'Merriweather', serif;
+        content: counter(page);
+        text-align: right;
+        vertical-align: top;
+        padding-top: 2em;
+      }
+    }
+
+    @page frontmatter :left {
+      @top-left {
+        font: 11pt 'Merriweather', serif;
+        font-variant: small-caps;
+        content: string(title);
+        vertical-align: bottom;
+        padding-bottom: 2em;
+      }
+
+      @bottom-left {
+        font: 11pt 'Merriweather', serif;
+        content: counter(page, lower-roman);
+        padding-top: 2em;
+        vertical-align: top;
+      }
+    }
+
+    @page frontmatter :right {
+      @top-right {
+        font: 11pt 'Merriweather', serif;
+        font-variant: small-caps;
+        content: string(header, first); 
+        vertical-align: bottom;
+        padding-bottom: 2em; 
+      }
+
+      @bottom-right {
+        font: 11pt 'Merriweather', serif;
+        content: counter(page, lower-roman);
+        text-align: right;
+        vertical-align: top;
+        padding-top: 2em;
+      }
+    }
+
+    @page blank :left {
+      @top-left { content: normal }
+      @bottom-left { content: normal }
+    }
+
+    @page blank :right {
+      @top-right { content: normal }
+      @bottom-right { content: normal }
+    }
+
+    /***** OTHER *****/
+    /* ---- Tables ---- */
+ 
+      /*  A clean textbook-like style with horizontal lines above and below and under 
+          the header. Rows highlight on hover to help scanning the table on screen.
+      */
+       
+      table
+          {
+          border-collapse: collapse;
+          border-spacing: 0; /* IE 6 */
+       
+          border-bottom: 2pt solid #000;
+          border-top: 2pt solid #000; /* The caption on top will not have a bottom-border */
+       
+          /* Center */
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 16.875pt;
+          }
+          
+      thead /* Entire table header */
+          {
+          border-bottom: 1pt solid #000;
+          background-color: #ccc; /* Does this BG print well? */
+          }
+       
+      tr.header /* Each header row */
+          {
+          } 
+       
+      tbody /* Entire table  body */
+          {
+          }
+       
+      /* Table body rows */
+       
+      tr  {
+        border-bottom: 0.5pt solid #000;
+          }
+      .steptable tbody tr:nth-child(2n)
+          {
+          /*background-color: #eee;*/
+          }
+          
+       
+      td, th /* Table cells and table header cells */
+          { 
+          vertical-align: top; /* Word */
+          vertical-align: baseline; /* Others */
+          padding-left:   0.5em;
+          padding-right:  0.5em;
+          padding-top:    0.2em;
+          padding-bottom: 0.2em;
+          }
+
+      /* Code */
+
+      /* code {
+        display: block;
+        padding: 0.5em;
+        background-color: #ccc;
+      } */
+
+      pre,code {
+        font-family: "Source Code Pro";
+      }
+
+      pre, code 
+    {
+    background-color: #ccc;
+    /* BEGIN word wrap */
+    /* Need all the following to word wrap instead of scroll box */
+    /* This will override the overflow:auto if present */
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    /* END word wrap */
+    }
+ 
+pre /* Code blocks */
+    {
+    /* Distinguish pre blocks from other text by more than the font with a background tint. */
+    padding: 0.5em; /* Since we have a background color */
+    border-radius: 5px; /* Softens it */
+    /* Give it a some definition */
+    border: 1px solid #aaa;
+    /* Set it off left and right, seems to look a bit nicer when we have a background */
+    margin-left:  0.5em;
+    margin-right: 0.5em;
+    }
+
+    figure img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+  </style>
+</head>
+<body>
+  <section id="cover">
+    <p class="client">{{subtitle}}</p>
+    <h1 class="doctitle">{{title}}</h1>
+
+  </section>
+  
+  <section id="frontmatter">
+    <section class="chapter no-toc">
+      <header>
+        <h2>Table of Features</h2>
+      </header>
+
+      <nav class="toc table-of-features">
+        <ol class="features-list">
+          {% for feature in contents %}
+          <li><a href="#{{feature.id}}">{{feature.name}}</a>
+            <ol class="scenarios-list">
+              {% for scenario in feature.elements %}
+              <li><a href="#{{scenario.id}}">{{scenario.name}}</a></li>
+              {% endfor %}
+            </ol>
+          </li>
+          {% endfor %}
+        </ol>
+      </nav>
+
+  </section>
+
+  <section id="mainmatter">
+    <section class="part" id="features">
+      <header>
+        <h1>Features</h1>
+      </header>
+
+      {% for feature in contents %}
+      <section class="feature" id="{{feature.id}}">
+        <header>
+          <h2>{{feature.name}}</h2>
+        </header>
+
+        <div class="description">
+          {{ feature.description | parse | relevel:2 | markdown }}
+        </div>
+
+        {% for scenario in feature.elements %}
+        <section class="scenario" id="{{scenario.id}}">
+          <header>
+            <h3>{{scenario.name}}</h3>
+          </header>
+
+          <div class="description">
+            {{ scenario.description | parse | relevel:3 | markdown }}
+          </div>
+
+          {% unless scenario.steps.empty %}
+          <section class="steps">
+            {% unless scenario.description=="" %}
+              <header>
+                <h4>Steps</h4>
+              </header>
+            {% endunless %}
+            <ol>
+              {% for step in scenario.steps %}
+                <li class="step {{step.keyword | strip | downcase}}">
+                  <p>
+                    <strong class="keyword">{{step.keyword | strip}}</strong> {{step.name}}
+                  </p>
+
+                  {% if step.doc_string %}
+                  <pre class="docstring">
+                    {{ step.doc_string.value | escape_once }}
+                  </pre>
+                  {% endif %}
+
+                  {% if step.rows %}
+                  <table class="steptable">
+                    <thead>
+                      <tr>
+                        {% for cell in step.rows[0].cells %}
+                        <th>{{ cell }}</th>
+                        {% endfor %}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for row in step.rows %}
+                      {% unless forloop.first %}
+                      <tr>
+                        {% for cell in row.cells %}
+                        <td>{{ cell | escape_once }}</td>
+                        {% endfor %}
+                      </tr>
+                      {% endunless %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  {% endif %}
+
+                </li>
+              {% endfor %}
+            </ol>
+          </section> <!-- Steps -->
+          {% endunless %}
+
+        </section> <!-- Scenario -->
+        {% endfor %}
+
+      </section> <!-- Feature -->
+      {% endfor %}
+
+    </section> <!-- Part -->
+  
+  </section>
+</body>
+</html>
