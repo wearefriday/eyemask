@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "cucumber", "~> 1.1.1"
   spec.add_development_dependency "aruba", "~> 0.6.2"
+  spec.add_development_dependency "rspec", "~> 3.2"
   spec.add_runtime_dependency "multi_json", "~> 1.11.0"
   spec.add_runtime_dependency "thor", "~> 0.19.1"
   spec.add_runtime_dependency "redcarpet", "~> 3.2.2"
