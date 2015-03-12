@@ -22,7 +22,7 @@ Feature: Liquid templates
 
   Scenario: Run Eyemask with Liquid interpolation
     Given a file named "cucumber_output.json" with:
-      """
+      """json
       [
   {
     "keyword": "Feature",

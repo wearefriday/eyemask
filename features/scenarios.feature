@@ -2,7 +2,7 @@ Feature: Scenarios
 
   Scenario: Display a block for each scenario in the JSON
     Given a file named "cucumber_output.json" with:
-      """
+      """json
 [     
   {
     "keyword": "Feature",
@@ -33,7 +33,7 @@ Feature: Scenarios
 
   Scenario: Display the scenario description
     Given a file named "cucumber_output.json" with:
-      """
+      """json
 [     
   {
     "keyword": "Feature",
@@ -64,7 +64,7 @@ Feature: Scenarios
 
   Scenario: Support Markdown headers in scenario descriptions
     Given a file named "cucumber_output.json" with:
-      """
+      """json
 [     
   {
     "keyword": "Feature",

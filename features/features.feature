@@ -2,7 +2,7 @@ Feature: Features
 
   Scenario: Run Eyemask with a single feature without any scenarios
     Given a file named "cucumber_output.json" with:
-      """
+      """json
       [
   {
     "keyword": "Feature",
@@ -36,7 +36,7 @@ Feature: Features
 
   Scenario: Support descriptions with Markdown headers
     Given a file named "cucumber_output.json" with:
-      """
+      """json
       [
   {
     "keyword": "Feature",

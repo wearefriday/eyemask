@@ -5,11 +5,11 @@ Feature: Custom templates
 
   Scenario: Run Eyemask supplying a template
     Given a file named "cucumber_output.json" with:
-      """
+      """json
         []
       """
     And a file named "my_template.html" with:
-      """
+      """html
         <html>
           <body>
             <h1>{{ title }}</h1>
@@ -19,6 +19,6 @@ Feature: Custom templates
     When I run Eyemask on "cucumber_output.json" with the template: "my_template.html"
     Then the exit status should be 0
     And the output should contain:
-      """
+      """html
       <h1>Specification</h1>
       """

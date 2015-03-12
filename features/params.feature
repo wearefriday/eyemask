@@ -9,7 +9,7 @@ Feature: Custom parameters
         []
       """
     And a file named "my_template.html" with:
-      """
+      """html
         <html>
           <body>
             <h1>{{ params.myparam }}</h1>

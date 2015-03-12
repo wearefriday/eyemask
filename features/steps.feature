@@ -2,7 +2,7 @@ Feature: Steps
 
   Scenario: Display steps as a prose block
     Given a file named "cucumber_output.json" with:
-      """
+      """json
 [
   {
     "keyword": "Feature",
@@ -79,7 +79,7 @@ Feature: Steps
 
   Scenario: Docstrings are converted to blockquotes
     Given a file named "cucumber_output.json" with:
-      """
+      """json
     [
   {
     "keyword": "Feature",
@@ -161,7 +161,7 @@ Feature: Steps
 
   Scenario: Render tables in steps appropriately
     Given a file named "cucumber_output.json" with:
-      """
+      """json
         [
   {
     "keyword": "Feature",
