@@ -47,3 +47,25 @@ Feature: Run Eyemask
       """
       subtitle: My Subtitle
       """
+
+  Scenario: Run Eyemask accepting STDIN as input
+    Given a file named "cucumber_output.json" with:
+      """json
+      [
+  {
+    "keyword": "Feature",
+    "name": "A test of an empty feature",
+    "line": 1,
+    "description": "As a feature\nThis should be empty",
+    "id": "a-test-of-an-empty-feature",
+    "uri": "features/empty_feature.feature"
+  }
+]
+      """
+    When I pipe the file "cucumber_output.json" into Eyemask
+    Then the exit status should be 0
+    And the output should contain:
+      """
+      A test of an empty feature
+      """
+      

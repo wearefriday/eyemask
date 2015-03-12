@@ -27,3 +27,10 @@ When /^I run Eyemask on "([^\"]+)" with the template: "([^\"]+)" and custom para
   cmd = "#{cmd_name} process --template=\"#{template}\" #{file_name} --params=\"#{param_name}\":\"#{param_value}\""
   run_simple(unescape(cmd), false)
 end
+
+When /^I pipe the file "([^\"]+)" into Eyemask$/ do |file_name|
+  cmd_name = File.expand_path("#{File.dirname(__FILE__)}/../../exe/eyemask")
+  run_interactive(unescape("#{cmd_name} process -"))
+  pipe_in_file(file_name)
+  close_input
+end

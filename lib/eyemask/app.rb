@@ -11,9 +11,18 @@ module Eyemask
     method_option "params", desc: "A set of custom parameters coded as key:value", type: :hash, default: {}
     def process(file_name)
       init_opts = {}
-      contents = File.open(file_name).read
+      contents = contents(file_name)
       init_opts[:template] = options[:template]
       puts Converter.new(init_opts).convert(contents, options)
+    end
+
+    def contents(file_name)
+      case file_name
+      when "-"
+        STDIN.read
+      else
+        File.open(file_name).read
+      end
     end
 
   end
