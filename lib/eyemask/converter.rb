@@ -67,8 +67,8 @@ module Eyemask
     def render_params(contents, options)
       params = {}
       params["contents"] = features_from_json(contents)
-      params["title"] = options[:title] ? options[:title] : "Specification"
-      params["subtitle"] = options[:subtitle] ? options[:subtitle] : nil
+      params["title"] = options[:title]
+      params["subtitle"] = options[:subtitle]
       params["params"] = options[:params]
       params
     end

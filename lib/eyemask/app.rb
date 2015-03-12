@@ -5,7 +5,7 @@ module Eyemask
   class App < Thor
 
     desc "process", "Process a Cucumber JSON file to Markdown"
-    method_option "title", desc: "Set a custom title for the document"
+    method_option "title", desc: "Set a custom title for the document", default: "Specification"
     method_option "subtitle", desc: "Set a custom subtitle for the document"
     method_option "template", desc: "A custom Liquid template for rendering the output"
     method_option "params", desc: "A set of custom parameters coded as key:value", type: :hash, default: {}
