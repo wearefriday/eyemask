@@ -2,7 +2,7 @@ require 'liquid'
 
 module Eyemask
   module Liquid
-    class Indent < Liquid::Block
+    class Indent < ::Liquid::Block
 
       def initialize(tag_name, markup, tokens)
         super

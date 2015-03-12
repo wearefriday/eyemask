@@ -1,3 +1,5 @@
+require "thor"
+
 module Eyemask
 
   class App < Thor

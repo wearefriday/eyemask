@@ -5,7 +5,7 @@ module Eyemask
 
   module Liquid
 
-    class Uml < Liquid::Block
+    class Uml < ::Liquid::Block
 
       def initialize(tag_name, markup, tokens)
         super

@@ -51,9 +51,9 @@ module Eyemask
     def initialize(initiaizer_options={})
       template = initiaizer_options[:template]
       if template
-        @template = Liquid::Template.parse(template)
+        @template = ::Liquid::Template.parse(template)
       else
-        @template = Liquid::Template.parse(ONE_PAGE_TEMPLATE)
+        @template = ::Liquid::Template.parse(ONE_PAGE_TEMPLATE)
       end
     end
 

@@ -9,7 +9,7 @@ module Eyemask
       end
     end
 
-    class Relevel < Liquid::Block
+    class Relevel < ::Liquid::Block
 
       def initialize(tag_name, markup, tokens)
         super

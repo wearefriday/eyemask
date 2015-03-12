@@ -5,7 +5,7 @@ module Eyemask
     module Parse
 
       def parse(input)
-        Liquid::Template.parse(input).render(@context.registers)
+        ::Liquid::Template.parse(input).render(@context.registers)
       end
 
     end
