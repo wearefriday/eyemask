@@ -1,0 +1,7 @@
+require "eyemask/liquid/blockquote"
+require "eyemask/liquid/indent"
+require "eyemask/liquid/markdown"
+require "eyemask/liquid/parse"
+require "eyemask/liquid/relevel"
+require "eyemask/liquid/strip"
+require "eyemask/liquid/uml"
