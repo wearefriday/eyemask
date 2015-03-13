@@ -34,7 +34,7 @@ You can specify a custom template by providing the `--template` option:
 
     $ eyemask process cucumber.json --template="path/to/template.html"
 
-It also supports customisation via *parameters*. There are two primary parameters: title, and subtitle. These become top-level variables available to the template:
+It also supports customisation via *parameters*. There are three primary parameters: title, subtitle, and authors. These become top-level variables available to the template:
 
     $ eyemask process cucumber.json --title="My Title Here"
 
@@ -59,6 +59,8 @@ Here are some of the features that are planned for the future (in no particular 
 - Ability to run Eyemask over more than one JSON file at once to support multi-repository projects.
 
 - Index and Table of Contents generation.
+
+- Default metadata, such as the date and time of preparation
 
 ## UML diagrams
 

@@ -1,7 +1,7 @@
 ---
 title: {{title}}
 {%if subtitle %}subtitle: {{subtitle}} {% endif %}
-{%if author %}author: {{author}} {% endif %}
+{%unless authors.empty %}author: {% for author in authors %}{{author}}{%unless forloop.last %}, {% endunless %}{% endfor %} {% endunless %}
 ---
 
 # Features

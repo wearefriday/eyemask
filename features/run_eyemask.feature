@@ -72,6 +72,18 @@ Feature: Run Eyemask
       <li>John Smith</li>
       """
 
+  Scenario: Run Eyemask supplying multiple authors
+    Given a file named "cucumber_output.json" with:
+      """
+        []
+      """
+    When I run Eyemask on "cucumber_output.json" with the authors: "John Smith" and "Jane Doe"
+    Then the exit status should be 0
+    And the output should contain:
+      """
+      author: John Smith, Jane Doe
+      """
+
   Scenario: Run Eyemask accepting STDIN as input
     Given a file named "cucumber_output.json" with:
       """json

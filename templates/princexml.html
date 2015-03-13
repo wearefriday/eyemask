@@ -437,9 +437,10 @@ pre /* Code blocks */
   <section id="cover">
     <p class="client">{{subtitle}}</p>
     <h1 class="doctitle">{{title}}</h1>
-    {% if author %}<ul class="authors">
-      <li>{{author}}</li>
-    </ul>{% endif %}
+    {% unless authors.empty %}<ul class="authors">
+      {% for author in authors %}<li>{{author}}</li>
+      {% endfor %}
+    </ul>{% endunless %}
 
   </section>
   

@@ -7,7 +7,7 @@ module Eyemask
     desc "process", "Process a Cucumber JSON file to Markdown"
     method_option "title", desc: "Set a custom title for the document", default: "Specification"
     method_option "subtitle", desc: "Set a custom subtitle for the document"
-    method_option "author", desc: "Set an author for the document"
+    method_option "authors", desc: "Set a list of authors for the document", type: :array, default: []
     method_option "template", desc: "A custom Liquid template for rendering the output", default: "markdown"
     method_option "params", desc: "A set of custom parameters coded as key:value", type: :hash, default: {}
     def process(file_name)

@@ -36,7 +36,7 @@ module Eyemask
       params["contents"] = features_from_json(contents)
       params["title"] = options[:title]
       params["subtitle"] = options[:subtitle]
-      params["author"] = options[:author]
+      params["authors"] = options[:authors]
       params["params"] = options[:params]
       params
     end
