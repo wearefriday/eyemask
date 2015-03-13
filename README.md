@@ -30,9 +30,17 @@ Eyemask is designed to be used as part of a larger toolchain. Its most basic ope
 
     $ eyemask process cucumber.json
 
+We also support taking the JSON from `STDIN` by using `-` as the file name:
+
+    $ cat cucumber.json | eyemask process -
+
 You can specify a custom template by providing the `--template` option:
 
     $ eyemask process cucumber.json --template="path/to/template.html"
+
+There are also some more built-in templates that can be used by refering to their name. For example, the [Prince XML](http://www.princexml.com/) template can be invoked as follows:
+
+    $ eyemask process cucumber.json --template=princexml
 
 It also supports customisation via *parameters*. There are three primary parameters: title, subtitle, and authors. These become top-level variables available to the template:
 
@@ -48,7 +56,7 @@ This list of options is likely to grow as we expand the use-cases of the tool.
 
 Here are some of the features that are planned for the future (in no particular order):
 
-- Named default templates (e.g. 'markdown', 'html', 'princexml') to make Eyemask more powerful out of the box.
+- More and improved named default templates to make Eyemask more powerful out of the box.
 
 - Introductory materials as Markdown, to explain more about the project.
 
