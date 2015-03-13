@@ -1,36 +1,38 @@
-When /^I run Eyemask on "([^\"]+)"$/ do |file_name|
+PROCESS_CMD = "process"
+
+def run_eyestalk_process(file_string, param_string="")
   cmd_name = File.expand_path("#{File.dirname(__FILE__)}/../../exe/eyemask")
-  cmd = "#{cmd_name} process #{file_name}"
+  cmd = "#{cmd_name} #{PROCESS_CMD} #{file_string} #{param_string}"
   run_simple(unescape(cmd), false)
+end
+
+When /^I run Eyemask on "([^\"]+)"$/ do |file_name|
+  run_eyestalk_process file_name
 end
 
 When /^I run Eyemask on "([^\"]+)" with the title: "([^\"]+)"$/ do |file_name, title|
-  cmd_name = File.expand_path("#{File.dirname(__FILE__)}/../../exe/eyemask")
-  cmd = "#{cmd_name} process --title=\"#{title}\" #{file_name}"
-  run_simple(unescape(cmd), false)
+  run_eyestalk_process file_name, "--title=\"#{title}\""
 end
 
 When /^I run Eyemask on "([^\"]+)" with the subtitle: "([^\"]+)"$/ do |file_name, subtitle|
-  cmd_name = File.expand_path("#{File.dirname(__FILE__)}/../../exe/eyemask")
-  cmd = "#{cmd_name} process --subtitle=\"#{subtitle}\" #{file_name}"
-  run_simple(unescape(cmd), false)
+  run_eyestalk_process file_name, "--subtitle=\"#{subtitle}\""
+end
+
+When /^I run Eyemask on "([^\"]+)" with the author: "([^\"]+)"$/ do |file_name, author|
+  run_eyestalk_process file_name, "--author=\"#{author}\""
 end
 
 When /^I run Eyemask on "([^\"]+)" with the template: "([^\"]+)"$/ do |file_name, template|
-  cmd_name = File.expand_path("#{File.dirname(__FILE__)}/../../exe/eyemask")
-  cmd = "#{cmd_name} process --template=\"#{template}\" #{file_name}"
-  run_simple(unescape(cmd), false)
+  run_eyestalk_process file_name, "--template=\"#{template}\""
 end
 
 When /^I run Eyemask on "([^\"]+)" with the template: "([^\"]+)" and custom parameter "(.*?)" set to "(.*?)"$/ do |file_name, template, param_name, param_value|
-  cmd_name = File.expand_path("#{File.dirname(__FILE__)}/../../exe/eyemask")
-  cmd = "#{cmd_name} process --template=\"#{template}\" #{file_name} --params=\"#{param_name}\":\"#{param_value}\""
-  run_simple(unescape(cmd), false)
+  run_eyestalk_process file_name, "--template=\"#{template}\" --params=\"#{param_name}\":\"#{param_value}\""
 end
 
 When /^I pipe the file "([^\"]+)" into Eyemask$/ do |file_name|
   cmd_name = File.expand_path("#{File.dirname(__FILE__)}/../../exe/eyemask")
-  run_interactive(unescape("#{cmd_name} process -"))
+  run_interactive(unescape("#{cmd_name} #{PROCESS_CMD} -"))
   pipe_in_file(file_name)
   close_input
 end
