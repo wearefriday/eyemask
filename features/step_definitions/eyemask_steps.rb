@@ -48,3 +48,11 @@ When /^I pipe the file "([^\"]+)" into Eyemask$/ do |file_name|
   pipe_in_file(file_name)
   close_input
 end
+
+When /^I run Eyemask on "([^"]*)" and "([^"]*)"$/ do |file_1, file_2|
+  run_eyestalk_process "\"#{file_1}\" \"#{file_2}\""
+end
+
+When /^I run Eyemask on "([^"]*)" and "([^"]*)" with the template "([^"]*)"$/ do |file_1, file_2, template|
+  run_eyestalk_process "\"#{file_1}\" \"#{file_2}\"", "--template=\"#{template}\""
+end

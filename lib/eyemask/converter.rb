@@ -10,7 +10,7 @@ module Eyemask
     end
 
     def convert(contents, options={})
-      if contents != ""
+      if contents != []
         params = render_params(contents,options)
         @template.render(params, registers: params).strip
       end
@@ -33,7 +33,7 @@ module Eyemask
 
     def render_params(contents, options)
       params = {}
-      params["contents"] = features_from_json(contents)
+      params["contents"] = parse_contents(contents)
       params["title"] = options[:title]
       params["subtitle"] = options[:subtitle]
       params["authors"] = options[:authors]
@@ -42,8 +42,16 @@ module Eyemask
       params
     end
 
-    def features_from_json(contents)
-      JSON.parse(contents).sort{|a, b| a["uri"] <=> b["uri"] }
+    def parse_contents(contents)
+      contents.map{|doc| parse_file(doc) }.flatten.sort{|a, b| a["uri"] <=> b["uri"] }
+    end
+
+    def parse_file(contents)
+      begin
+        JSON.parse(contents)
+      rescue JSON::ParserError
+        []
+      end
     end
 
   end
