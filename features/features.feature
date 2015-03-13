@@ -4,15 +4,15 @@ Feature: Features
     Given a file named "cucumber_output.json" with:
       """javascript
       [
-  {
-    "keyword": "Feature",
-    "name": "A test of an empty feature",
-    "line": 1,
-    "description": "As a feature\nThis should be empty",
-    "id": "a-test-of-an-empty-feature",
-    "uri": "features/empty_feature.feature"
-  }
-]
+        {
+          "keyword": "Feature",
+          "name": "A test of an empty feature",
+          "line": 1,
+          "description": "As a feature\nThis should be empty",
+          "id": "a-test-of-an-empty-feature",
+          "uri": "features/empty_feature.feature"
+        }
+      ]
     """
     When I run Eyemask on "cucumber_output.json"
     Then the exit status should be 0
