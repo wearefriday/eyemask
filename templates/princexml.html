@@ -509,8 +509,7 @@ pre /* Code blocks */
 
                   {% if step.doc_string %}
                   <pre class="docstring">
-                    {{ step.doc_string.value | escape_once }}
-                  </pre>
+{{ step.doc_string.value | escape_once }}</pre>
                   {% endif %}
 
                   {% if step.rows %}
