@@ -7,6 +7,7 @@ module Eyemask
     module Markdown
       class HTML < Redcarpet::Render::HTML
         include Rouge::Plugins::Redcarpet
+        include Redcarpet::Render::SmartyPants
       end 
 
       MARKDOWN = Redcarpet::Markdown.new(HTML, autolink: true, tables: true, footnotes: false, fenced_code_blocks:true, no_intra_emphasis: true, superscript: true, underline: true, highlight: true)
