@@ -10,7 +10,7 @@ Feature: Multiple files
     as a list. Each file should use the Gherkin JSON serialisation.
 
     Given a file named "cucumber_1.json" with:
-      """
+      """javascript
       [
         {
           "keyword": "Feature",
@@ -23,7 +23,7 @@ Feature: Multiple files
       ]
       """
     And a file named "cucumber_2.json" with:
-      """
+      """javascript
       [
         {
           "keyword": "Feature",
@@ -65,7 +65,7 @@ Feature: Multiple files
     {% enduml %}
 
     Given a file named "cucumber_1.json" with:
-      """
+      """javascript
       [
         {
           "keyword": "Feature",
@@ -78,7 +78,7 @@ Feature: Multiple files
       ]
       """
     And a file named "cucumber_2.json" with:
-      """
+      """javascript
       [
         {
           "keyword": "Feature",

@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "thor", "~> 0.19.1"
   spec.add_runtime_dependency "redcarpet", "~> 3.2.2"
   spec.add_runtime_dependency "liquid", "~> 3.0.1"
+  spec.add_runtime_dependency "rouge"
 end

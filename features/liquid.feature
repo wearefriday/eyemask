@@ -2,7 +2,7 @@ Feature: Liquid templates
 
   As with many things in software engineering, a little recursion can be useful. Our templates are written using Liquid. We also support running liquid across strings we interpolate into those templates, using Liquid's standard filter syntax.
 
-  ~~~~ruby
+  ~~~~liquid
   {% raw %}{{ some_string | parse | markdown }}{% endraw %}
   ~~~~
 
@@ -22,20 +22,20 @@ Feature: Liquid templates
 
   Scenario: Run Eyemask with Liquid interpolation
     Given a file named "cucumber_output.json" with:
-      """json
+      """javascript
       [
-  {
-    "keyword": "Feature",
-    "name": "A test of a feature with Liquid filtering",
-    "line": 1,
-    "description": "{{params.myparam}}",
-    "id": "a-test-of-a-liquid-feature",
-    "uri": "features/liquid_feature.feature"
-  }
-]
+        {
+          "keyword": "Feature",
+          "name": "A test of a feature with Liquid filtering",
+          "line": 1,
+          "description": "{{params.myparam}}",
+          "id": "a-test-of-a-liquid-feature",
+          "uri": "features/liquid_feature.feature"
+        }
+      ]
     """
     And a file named "my_template.html" with:
-      """
+      """html
         <html>
           <body>
             {% for feature in contents %}

@@ -5,7 +5,7 @@ Feature: Custom templates
 
   Scenario: Run Eyemask supplying a template
     Given a file named "cucumber_output.json" with:
-      """json
+      """javascript
         []
       """
     And a file named "my_template.html" with:
@@ -25,7 +25,7 @@ Feature: Custom templates
 
   Scenario: Run Eyemask with a named template
     Given a file named "cucumber_output.json" with:
-      """json
+      """javascript
         []
       """
     When I run Eyemask on "cucumber_output.json" with the template: "princexml"

@@ -5,7 +5,7 @@ Feature: Custom parameters
 
   Scenario: Run Eyemask supplying a template
     Given a file named "cucumber_output.json" with:
-      """
+      """javascript
         []
       """
     And a file named "my_template.html" with:
@@ -19,6 +19,6 @@ Feature: Custom parameters
     When I run Eyemask on "cucumber_output.json" with the template: "my_template.html" and custom parameter "myparam" set to "Foo"
     Then the exit status should be 0
     And the output should contain:
-      """
+      """html
       <h1>Foo</h1>
       """
