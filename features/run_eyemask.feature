@@ -48,6 +48,30 @@ Feature: Run Eyemask
       subtitle: My Subtitle
       """
 
+  Scenario: Run Eyemask supplying an author
+    Given a file named "cucumber_output.json" with:
+      """
+        []
+      """
+    When I run Eyemask on "cucumber_output.json" with the author: "John Smith"
+    Then the exit status should be 0
+    And the output should contain:
+      """
+      author: John Smith
+      """
+
+  Scenario: Run Eyemask with the PrinceXML template supplying an author
+    Given a file named "cucumber_output.json" with:
+      """
+        []
+      """
+    When I run Eyemask on "cucumber_output.json" with the template "princexml" and the author: "John Smith"
+    Then the exit status should be 0
+    And the output should contain:
+      """
+      <li>John Smith</li>
+      """
+
   Scenario: Run Eyemask accepting STDIN as input
     Given a file named "cucumber_output.json" with:
       """json
@@ -68,4 +92,3 @@ Feature: Run Eyemask
       """
       A test of an empty feature
       """
-      
