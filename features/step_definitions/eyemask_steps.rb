@@ -26,6 +26,10 @@ When /^I run Eyemask on "([^\"]+)" with the authors: "([^\"]+)" and "([^\"]+)"$/
   run_eyestalk_process file_name, "--authors=\"#{author_1}\" \"#{author_2}\""
 end
 
+When /^I run Eyemask on "([^\"]+)" with the template "([^\"]+)" and the logo: "([^\"]+)"$/ do |file_name, template, logo_file|
+  run_eyestalk_process file_name, "--template=\"#{template}\" --logo=\"#{logo_file}\""
+end
+
 When /^I run Eyemask on "([^\"]+)" with the template "([^\"]+)" and the author: "([^\"]+)"$/ do |file_name, template, author|
   run_eyestalk_process file_name, "--template=\"#{template}\" --authors=\"#{author}\""
 end

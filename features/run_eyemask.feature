@@ -84,6 +84,18 @@ Feature: Run Eyemask
       author: John Smith, Jane Doe
       """
 
+  Scenario: Run Eyemask with a logo
+    Given a file named "cucumber_output.json" with:
+      """
+        []
+      """
+    When I run Eyemask on "cucumber_output.json" with the template "princexml" and the logo: "my_logo.png"
+    Then the exit status should be 0
+    And the output should contain:
+      """
+      <img alt="" src="my_logo.png">
+      """
+
   Scenario: Run Eyemask accepting STDIN as input
     Given a file named "cucumber_output.json" with:
       """json

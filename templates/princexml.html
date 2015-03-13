@@ -99,10 +99,7 @@
       font-weight: 600;
     }
 
-    .publisher {
-      font-family: "Cooper Black";
-      font-size:37.125pt;
-      text-transform: lowercase;
+    .logo {
       position: absolute;
       bottom: 0;
     }
@@ -441,6 +438,10 @@ pre /* Code blocks */
       {% for author in authors %}<li>{{author}}</li>
       {% endfor %}
     </ul>{% endunless %}
+
+    {% if logo %}<div class="logo">
+      <img alt="" src="{{logo}}">
+    </div>{% endif %}
 
   </section>
   

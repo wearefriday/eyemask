@@ -42,7 +42,7 @@ There are also some more built-in templates that can be used by refering to thei
 
     $ eyemask process cucumber.json --template=princexml
 
-It also supports customisation via *parameters*. There are three primary parameters: title, subtitle, and authors. These become top-level variables available to the template:
+It also supports customisation via *parameters*. There are four primary parameters: title, subtitle, logo, and authors. These become top-level variables available to the template:
 
     $ eyemask process cucumber.json --title="My Title Here"
 

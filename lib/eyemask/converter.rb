@@ -37,6 +37,7 @@ module Eyemask
       params["title"] = options[:title]
       params["subtitle"] = options[:subtitle]
       params["authors"] = options[:authors]
+      params["logo"] = options[:logo]
       params["params"] = options[:params]
       params
     end
