@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bundle exec cucumber --format json | eyemask process - --title="Eyemask Specification" --subtitle="Friday" --authors="Joe Geldart" --template=princexml | prince -o tmp/eyemask.pdf -
