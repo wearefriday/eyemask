@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-bundle exec cucumber --format json | eyemask process - --title="Eyemask Specification" --subtitle="Friday" --authors="Joe Geldart" --template=princexml | prince -o tmp/eyemask.pdf -
+bundle exec cucumber --format json | eyemask process - --subtitle="Eyemask Specification" --title="Friday" --authors="Joe Geldart" --template=princexml | prince -o tmp/eyemask.pdf -

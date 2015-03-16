@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{params.client}}: {{params.project}} {{title}}</title>
+  <title>{{title}}: {{subtitle}}</title>
   <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,700,400italic,700italic,900,900italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
   <style>
@@ -453,8 +453,8 @@ pre, .highlight /* Code blocks */
 </head>
 <body>
   <section id="cover">
-    <p class="client">{{subtitle}}</p>
-    <h1 class="doctitle">{{title}}</h1>
+    <p class="client">{{title}}</p>
+    <h1 class="doctitle">{{subtitle}}</h1>
     {% unless authors.empty %}<ul class="authors">
       {% for author in authors %}<li>{{author}}</li>
       {% endfor %}
