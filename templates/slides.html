@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{title}}: {{subtitle}}</title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+  <style>
+
+    html {
+        font-size: 11pt;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 2.4rem;
+      line-height: 1.6875;
+    }
+
+    h1,h2,h3,h4 {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0 0 16.875pt 0;
+    }
+
+    h1 {
+      font-size: 37.125pt;
+    }
+
+    h2 {
+      font-size: 24.75pt;
+    }
+
+    h3 {
+      font-size: 16.5pt;
+    }
+
+    h4 {
+      font-size: 11pt;
+    }
+
+    /***** SLIDES *****/
+
+    .slide {
+      page-break-before: always;
+    }
+
+    /***** PARTS *****/
+
+    #mainmatter {
+      counter-reset: feature;
+    }
+
+    /***** SLIDE SECTION TITLE *****/
+
+    .slide-section-title h2 {
+      font-size: 37.125pt;
+      margin: 33mm auto;
+      text-align: center;
+      string-set: header "Feature " counter(feature) ": " content();
+    }
+
+    /***** FEATURE *****/
+
+    .feature {
+      counter-increment: feature;
+      counter-reset: scenario;
+    }
+
+    .feature h2::before {
+      content: "Feature " counter(feature);
+    }
+    .slide-section-title.feature h2::before {
+      display: block;
+      font-weight: lighter;
+      text-transform: uppercase;
+      font-size: 24.75pt;
+    }
+
+    /***** SCENARIO *****/
+
+    .scenario {
+      counter-increment: scenario;
+    }
+
+    .scenario h3::before {
+      content: counter(feature) "." counter(scenario) ". ";
+    }
+
+    /***** STEPS *****/
+
+    .steps ol {
+      margin-left: 0;
+      list-style: lower-roman;
+    }
+
+    .steps ol li p {
+      margin-top: 0 !important;
+    }
+
+    .steps ol li p:only-child {
+      margin: 0;
+    }
+
+    .highlight {
+      page-break-before: avoid;
+    }
+    .docstring {
+      page-break-before: avoid;
+    }
+
+    .steptable {
+      page-break-before: avoid;
+    }
+
+    /***** TABLES *****/
+
+    /*  A clean textbook-like style with horizontal lines above and below and under 
+          the header. Rows highlight on hover to help scanning the table on screen.
+      */
+       
+      table
+          {
+          border-collapse: collapse;
+          border-spacing: 0; /* IE 6 */
+       
+          border-bottom: 2pt solid #000;
+          border-top: 2pt solid #000; /* The caption on top will not have a bottom-border */
+       
+          /* Center */
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 16.875pt;
+          }
+          
+      thead /* Entire table header */
+          {
+          border-bottom: 1pt solid #000;
+          background-color: #eee; /* Does this BG print well? */
+          }
+       
+      tr.header /* Each header row */
+          {
+          } 
+       
+      tbody /* Entire table  body */
+          {
+          }
+       
+      /* Table body rows */
+       
+      tr  {
+        border-bottom: 0.5pt solid #000;
+          }
+      .steptable tbody tr:nth-child(2n)
+          {
+          /*background-color: #eee;*/
+          }
+          
+       
+      td, th /* Table cells and table header cells */
+          { 
+          vertical-align: top; /* Word */
+          vertical-align: baseline; /* Others */
+          padding-left:   0.5em;
+          padding-right:  0.5em;
+          padding-top:    0.2em;
+          padding-bottom: 0.2em;
+          }
+
+    /***** CODE/PRE *****/
+
+    pre,code,.highlight {
+        font-family: "Source Code Pro";
+        background-color: #eee;
+      }
+
+      pre, code 
+    {
+    /* BEGIN word wrap */
+    /* Need all the following to word wrap instead of scroll box */
+    /* This will override the overflow:auto if present */
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    /* END word wrap */
+    }
+ 
+pre, .highlight /* Code blocks */
+    {
+    /* Distinguish pre blocks from other text by more than the font with a background tint. */
+    padding: 0.5em; /* Since we have a background color */
+    border-radius: 5px; /* Softens it */
+    /* Give it a some definition */
+    border: 1px solid #ccc;
+    /* Set it off left and right, seems to look a bit nicer when we have a background */
+    margin-left:  0.5em;
+    margin-right: 0.5em;
+    }
+
+    /***** FIGURES/IMAGES *****/
+
+    figure img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+    /***** PAGE LAYOUT *****/
+
+    @page {
+      size: a4 landscape;
+      margin: 23.333mm 33mm 46.666mm 33mm;
+
+      @top-center {
+        font: 11pt 'Helvetica', sans-serif;
+        font-variant: small-caps;
+        content: string(header, first); 
+        vertical-align: bottom;
+        padding-bottom: 2em; 
+      }
+
+      @bottom-center {
+        font: 11pt 'Helvetica', sans-serif;
+        font-variant: small-caps;
+        text-align: center;
+        content: counter(page);
+        vertical-align: top;
+        padding-top: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section id="frontmatter">
+    <section class="slide slide-title">
+      <header>
+        <h1 class="title">{{title}}</h1>
+        <h2 class="subtitle">{{subtitle}}</h2>
+      </header>
+      {% unless authors.empty %}<ul class="authors">
+        {% for author in authors %}<li>{{author}}</li>
+        {% endfor %}
+      </ul>{% endunless %}
+
+      {% if logo %}<div class="logo">
+        <img alt="" src="{{logo}}">
+      </div>{% endif %}
+    </section>
+
+    <section class="slide toc">
+      <header>
+        <h2>Features</h2>
+      </header>
+      <ol class="features-list">
+        {% for feature in contents %}
+        <li><a href="#{{feature.id}}">{{feature.name}}</a>
+          <ol class="scenarios-list">
+            {% for scenario in feature.elements %}
+            <li><a href="#{{scenario.id}}">{{scenario.name}}</a></li>
+            {% endfor %}
+          </ol>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+
+  </section>
+  <section id="mainmatter">
+
+    {% for feature in contents %}
+      <section class="slide slide-section-title feature">
+        <header>
+          <h2 id="feature-{{feature.id}}">{{feature.name}}</h2>
+        </header>
+      </section>
+
+      {% unless feature.description="" %}
+      <section class="slide slide-section-overview feature">
+        <header>
+          <h2>{{feature.name}}</h2>
+          <h3>Overview</h3>
+        </header>
+        {{ feature.description | parse | relevel:2 | markdown }}
+      </section>
+      {% endunless %}
+
+      {% for scenario in feature.elements %}
+      <section class="slide slide-scenario scenario">
+        <header>
+          <h3 id="scenario-{{scenario.id}}">{{scenario.name}}</h3>
+        </header>
+        <div class="description">
+          {{ scenario.description | parse | relevel:3 | markdown }}
+        </div>
+        <div class="steps">
+          <ol>
+            {% for step in scenario.steps %}
+              <li class="step {{step.keyword | strip | downcase}}">
+                <p>
+                  <strong class="keyword">{{step.keyword | strip}}</strong> {{step.name}}
+                </p>
+
+                {% if step.doc_string %}
+  {{ step.doc_string.value | highlight: step.doc_string.content_type }}
+                {% endif %}
+
+                {% if step.rows %}
+                <table class="steptable">
+                  <thead>
+                    <tr>
+                      {% for cell in step.rows[0].cells %}
+                      <th>{{ cell }}</th>
+                      {% endfor %}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in step.rows %}
+                    {% unless forloop.first %}
+                    <tr>
+                      {% for cell in row.cells %}
+                      <td>{{ cell | escape_once }}</td>
+                      {% endfor %}
+                    </tr>
+                    {% endunless %}
+                    {% endfor %}
+                  </tbody>
+                </table>
+                {% endif %}
+
+              </li>
+            {% endfor %}
+          </ol>
+        </div>
+      </section>
+      {% endfor %}
+    {% endfor %}
+
+  </section>
+  <section id="backmatter">
+  </section>
+
+</body>
+</html>
