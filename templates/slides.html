@@ -205,6 +205,10 @@ pre, .highlight /* Code blocks */
         margin-right: auto;
       }
 
+    .resolution-print {
+      prince-image-resolution: 300dpi;
+    }
+
     /***** PAGE LAYOUT *****/
 
     @page {
@@ -274,7 +278,7 @@ pre, .highlight /* Code blocks */
         </header>
       </section>
 
-      {% unless feature.description="" %}
+      {% unless feature.description=="" %}
       <section class="slide slide-section-overview feature">
         <header>
           <h2>{{feature.name}}</h2>
