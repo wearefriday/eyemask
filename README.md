@@ -74,6 +74,8 @@ Here are some of the features that are planned for the future (in no particular 
 
 - A construct for cross-references of scenarios, features, etc.
 
+- Implement support for backgrounds and scenario outlines (with variable highlighting) in the default templates
+
 ## UML diagrams
 
 Eyemask supports rich UML diagrams, for those occasions when a visual is the best way to explain a feature. This uses the [PlantUML](http://plantuml.sourceforge.net/index.html) command-line tool. To use this functionality, download the PlantUML JAR and create a shell script called `plantuml`, in your `PATH`, that executes the JAR passing all parameters.
