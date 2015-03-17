@@ -260,6 +260,31 @@ pre, .highlight /* Code blocks */
       prince-image-resolution: 300dpi;
     }
 
+    /***** FOOTNOTES *****/
+
+    .footnote {
+      display: none;                   /* default rule */
+
+      display: prince-footnote;        /* prince-specific rules */
+      position: footnote;
+      footnote-style-position: inside;
+
+      counter-increment: footnote;
+      margin-left: 1.6875em;
+      font-size: 7.3pt;
+      line-height: 1.6875;
+    }
+
+    .footnote::footnote-call {
+      display: inline;
+      vertical-align: super;
+      font-size: 80%;
+    }
+
+    .footnote::footnote-marker {
+      padding-right: 0.4em;
+    }
+
     /***** PAGE LAYOUT *****/
 
     @page {
@@ -281,6 +306,12 @@ pre, .highlight /* Code blocks */
         content: counter(page);
         vertical-align: top;
         padding-top: 2em;
+      }
+
+      @footnotes {
+        border-top: thin solid black;
+        padding-top: 0.3em;
+        margin-top: 16.875pt;
       }
     }
   </style>
@@ -349,7 +380,7 @@ pre, .highlight /* Code blocks */
         <div class="steps">
           <ol>
             {% for step in scenario.steps %}
-              <li class="step {{step.keyword | strip | downcase}}">
+              <li class="step {{step.keyword | strip | downcase}} {{step.result.status | strip | downcase }}">
                 <p>
                   <strong class="keyword">{{step.keyword | strip}}</strong> {{step.name}}
                 </p>
