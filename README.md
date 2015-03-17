@@ -64,11 +64,11 @@ Here are some of the features that are planned for the future (in no particular 
 
 - Tags for footnotes, pullquotes, sidebars, sidenotes, and 'story cards'. 
 
-- Ability to run Eyemask over more than one JSON file at once to support multi-repository projects.
+- Index and flexible, configurable Table of Contents generation (probably based on a similar 'two-pass' approach as used by LaTeX).
 
-- Index and Table of Contents generation.
+- Default metadata, such as the date and time of preparation.
 
-- Default metadata, such as the date and time of preparation
+- Additional standard metadata params, such as version, client, project, and copyright.
 
 ## UML diagrams
 
