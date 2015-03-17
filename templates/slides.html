@@ -48,13 +48,63 @@
       counter-reset: feature;
     }
 
+    /***** TITLE *****/
+
+    h1.title {
+      font-size: 24.75pt;
+      font-weight: lighter;
+      text-transform: uppercase;
+      color: #c33;
+      letter-spacing: 0.2em;
+      margin-top: 44mm;
+      margin-bottom: 0;
+    }
+    h2.subtitle {
+      font-size: 37.125pt;
+    }
+
+    .authors {
+      list-style: none;
+      font-weight: bold;
+      font-size: 16.5pt;
+      margin: 0;
+    }
+
+    .logo {
+      position: static;
+      bottom: 0;
+      right: 0;
+    }
+
+    /***** TABLE OF CONTENTS *****/
+
+    .toc ol {
+      list-style: none;
+    }
+
+    .toc a {
+      text-decoration: none;
+    }
+
+    .toc a[href]::after { 
+      content: leader(".") target-counter(attr(href), page) 
+    }
+
+    .toc ol a[href]::before {
+      content: target-counter(attr(href), feature) ". ";
+    }
+
+    .toc ol ol a[href]::before {
+      content: target-counter(attr(href), feature) "." target-counter(attr(href), scenario) ". ";
+    }
+
     /***** SLIDE SECTION TITLE *****/
 
     .slide-section-title h2 {
       font-size: 37.125pt;
       margin: 33mm auto;
       text-align: center;
-      string-set: header "Feature " counter(feature) ": " content();
+      string-set: header "Feature " counter(feature) ". " content();
     }
 
     /***** FEATURE *****/
@@ -65,7 +115,8 @@
     }
 
     .feature h2::before {
-      content: "Feature " counter(feature);
+      content: "Feature " counter(feature) ". ";
+      font-weight: lighter;
     }
     .slide-section-title.feature h2::before {
       display: block;
@@ -257,10 +308,10 @@ pre, .highlight /* Code blocks */
       </header>
       <ol class="features-list">
         {% for feature in contents %}
-        <li><a href="#{{feature.id}}">{{feature.name}}</a>
+        <li><a href="#feature-{{feature.id}}">{{feature.name}}</a>
           <ol class="scenarios-list">
             {% for scenario in feature.elements %}
-            <li><a href="#{{scenario.id}}">{{scenario.name}}</a></li>
+            <li><a href="#scenario-{{scenario.id}}">{{scenario.name}}</a></li>
             {% endfor %}
           </ol>
         </li>
@@ -278,11 +329,10 @@ pre, .highlight /* Code blocks */
         </header>
       </section>
 
-      {% unless feature.description=="" %}
+      {% unless feature.description == '' %}
       <section class="slide slide-section-overview feature">
         <header>
           <h2>{{feature.name}}</h2>
-          <h3>Overview</h3>
         </header>
         {{ feature.description | parse | relevel:2 | markdown }}
       </section>
