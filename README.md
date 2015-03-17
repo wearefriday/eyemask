@@ -62,13 +62,17 @@ Here are some of the features that are planned for the future (in no particular 
 
 - Providing textual syntaxes for more diagram types, including charts, for when you want to reduce the cost of change.
 
-- Tags for footnotes, pullquotes, sidebars, sidenotes, and 'story cards'. 
+- Tags for footnotes, pullquotes, sidebars, sidenotes, questions, and 'story cards'. 
 
 - Index and flexible, configurable Table of Contents generation (probably based on a similar 'two-pass' approach as used by LaTeX).
 
 - Default metadata, such as the date and time of preparation.
 
 - Additional standard metadata params, such as version, client, project, and copyright.
+
+- A new textual syntax and diagram renderer for 'scenario flow diagrams' allowing links from blocks to scenarios or individual steps.
+
+- A construct for cross-references of scenarios, features, etc.
 
 ## UML diagrams
 
