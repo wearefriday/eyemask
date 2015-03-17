@@ -1,9 +1,17 @@
 Feature: Run Eyemask
+
+  {% note story %}
   When I run Eyemask on a Cucumber JSON file
   I want to receive a Markdown file containing the output of the specifications
   So I can produce a living documentation for the project
+  {% endnote %}
 
   Scenario: Run Eyemask on an empty file
+  
+    {% note questions %}
+    - Should we output a warning to `STDERR` in case of no input?
+    {% endnote %}
+
     Given an empty file named "cucumber_output.json"
     When I run Eyemask on "cucumber_output.json"
     Then the exit status should be 0

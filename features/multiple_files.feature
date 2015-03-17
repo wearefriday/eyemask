@@ -1,5 +1,11 @@
 Feature: Multiple files
 
+  {% note story EYE-128 %}
+  When I have multiple JSON files from different Cucumber runs, 
+  I want to run [Eyemask](https://github.com/wearefriday/eyemask) over those files 
+  so I can combine different specification suites together.
+  {% endnote %}
+
   Users are able to run Eyemask over multiple files. This allows them to,
   for example, combine the results of multiple specification suites into a single
   document.

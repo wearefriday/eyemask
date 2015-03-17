@@ -3,6 +3,7 @@
 <head>
   <title>{{title}}: {{subtitle}}</title>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
   <style>
 
     html {
@@ -159,6 +160,40 @@
 
     .steptable {
       page-break-before: avoid;
+    }
+
+    /***** NOTES *****/
+
+    .note {
+      border: 1pt solid #aaa;
+      border-left: 7pt solid #aaa;
+      background-color: #eee;
+      padding: 0 1.6875em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .note.note-story {
+      font-family: "Indie Flower", cursive;
+      background-color: #ffa;
+      border-color: #aa6;
+      max-width: 40em;
+    }
+    .note.note-story::after{
+      text-align: right;
+      display: block;
+      width: 100%;
+      font-size: 16.5pt;
+      content: attr(data-note);
+    }
+
+    .note.note-questions {
+      padding-bottom: 1em;
+      float: bottom;
+    }
+    .note.note-questions::before {
+      content: "Questions: ";
+      font-weight: bold;
     }
 
     /***** TABLES *****/
