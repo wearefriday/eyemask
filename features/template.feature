@@ -32,5 +32,5 @@ Feature: Custom templates
     Then the exit status should be 0
     And the output should contain:
       """html
-      <h1 class="doctitle">Specification</h1>
+      <p class="client">Specification</p>
       """
