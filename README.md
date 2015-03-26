@@ -80,6 +80,22 @@ Here are some of the features that are planned for the future (in no particular 
 
 Eyemask supports rich UML diagrams, for those occasions when a visual is the best way to explain a feature. This uses the [PlantUML](http://plantuml.sourceforge.net/index.html) command-line tool. To use this functionality, download the PlantUML JAR and create a shell script called `plantuml`, in your `PATH`, that executes the JAR passing all parameters.
 
+## Standard templates
+
+Eyemask currently includes 3 different standard templates that can be used by providing their name to the `--template` option:
+
+- `--template=markdown` -- Produces a Markdown file that can be provided to tools such as Pandoc.
+- `--template=princexml` -- A traditional 'book' template designed for use with PrinceXML.
+- `--template=slides` -- A clean presentation template designed for use with PrinceXML.
+
+These templates are being tweaked and improved. Other templates will likely be added over time.
+
+## Making PDFs
+
+This tool produces text files. These can be converted to nice PDFs using a few different tools. If you're producing your specifications for non-commercial uses, or have a licence, [Prince XML](http://www.princexml.com/) produces a very high quality of output. You can pipe the output of Eyemask directly into PrinceXML using a command such as:
+
+    $ bundle exec cucumber --format json | bundle exec eyemask process - --template=slides | prince -o tmp/specification.pdf -
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
