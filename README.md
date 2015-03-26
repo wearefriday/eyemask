@@ -13,7 +13,7 @@ This tool is still in its early days, and will evolve substantially as it is use
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'eyemask'
+gem 'eyemask', git: 'https://github.com/wearefriday/eyemask'
 ```
 
 And then execute:
@@ -28,27 +28,27 @@ Or install it yourself as:
 
 Eyemask is designed to be used as part of a larger toolchain. Its most basic operation takes a JSON file and outputs a Markdown file to `STDOUT`.
 
-    $ eyemask process cucumber.json
+    $ bundle exec eyemask process cucumber.json
 
 We also support taking the JSON from `STDIN` by using `-` as the file name:
 
-    $ cat cucumber.json | eyemask process -
+    $ cat cucumber.json | bundle exec eyemask process -
 
 You can specify a custom template by providing the `--template` option:
 
-    $ eyemask process cucumber.json --template="path/to/template.html"
+    $ bundle exec eyemask process cucumber.json --template="path/to/template.html"
 
 There are also some more built-in templates that can be used by refering to their name. For example, the [Prince XML](http://www.princexml.com/) template can be invoked as follows:
 
-    $ eyemask process cucumber.json --template=princexml
+    $ bundle exec eyemask process cucumber.json --template=princexml
 
 It also supports customisation via *parameters*. There are four primary parameters: title, subtitle, logo, and authors. These become top-level variables available to the template:
 
-    $ eyemask process cucumber.json --title="My Title Here"
+    $ bundle exec eyemask process cucumber.json --title="My Title Here"
 
 You can also set custom parameters by passing a `--params` option. The parameters take the form 'key':'value':
 
-    $ eyemask process cucumber.json --params=my_param:"My Value" my_other_param:2
+    $ bundle exec eyemask process cucumber.json --params=my_param:"My Value" my_other_param:2
 
 This list of options is likely to grow as we expand the use-cases of the tool.
 
