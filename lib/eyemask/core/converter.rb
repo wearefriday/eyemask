@@ -13,6 +13,8 @@ module Eyemask
         @template.render(document, registers: document).strip
       end
 
+      private
+
       def template(template)
         case template
         when "markdown"
