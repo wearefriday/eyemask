@@ -58,11 +58,11 @@ Here are some of the features that are planned for the future (in no particular 
 
 - More and improved named default templates to make Eyemask more powerful out of the box.
 
-- Introductory materials as Markdown, to explain more about the project.
+- Additional explanatory materials as Markdown files to explain more about your code.
 
 - Providing textual syntaxes for more diagram types, including charts, for when you want to reduce the cost of change.
 
-- Tags for footnotes, pullquotes, sidebars, sidenotes, questions, and 'story cards'. 
+- Tags for footnotes, pullquotes, sidebars, and sidenotes. 
 
 - Index and flexible, configurable Table of Contents generation (probably based on a similar 'two-pass' approach as used by LaTeX).
 
@@ -72,7 +72,7 @@ Here are some of the features that are planned for the future (in no particular 
 
 - A new textual syntax and diagram renderer for 'scenario flow diagrams' allowing links from blocks to scenarios or individual steps.
 
-- A construct for cross-references of scenarios, features, etc.
+- A construct/tag for cross-references of scenarios, features, etc.
 
 - Implement support for backgrounds and scenario outlines (with variable highlighting) in the default templates
 
