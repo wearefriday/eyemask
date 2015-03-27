@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["joe.geldart@wearefriday.com"]
 
   spec.summary       = %q{Eyemask makes it easy to create rich, engaging, living documentation that everyone can use.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "http://github.com/wearefriday/eyemask"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
