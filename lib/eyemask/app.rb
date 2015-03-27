@@ -13,9 +13,15 @@ module Eyemask
     method_option "params", desc: "A set of custom parameters coded as key:value", type: :hash, default: {}
     def process(*file_names)
       init_opts = {}
-      contents = file_names.map{|file| contents(file)}
+      loader = Eyemask::Core::Loader.new(options)
+      file_names.each do |file|
+        loader.load(file, contents(file))
+      end
+      loader.done
+      
       init_opts[:template] = options[:template]
-      puts Converter.new(init_opts).convert(contents, options)
+
+      puts Eyemask::Core::Converter.new(init_opts).convert(loader.document)
     end
 
     no_commands do
