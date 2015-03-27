@@ -13,6 +13,12 @@ This tool is still in its early days, and will evolve substantially as it is use
 Add this line to your application's Gemfile:
 
 ```ruby
+gem 'eyemask'
+```
+
+Or, for the latest development version:
+
+```ruby
 gem 'eyemask', git: 'https://github.com/wearefriday/eyemask'
 ```
 
