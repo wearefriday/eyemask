@@ -162,6 +162,22 @@
       page-break-before: avoid;
     }
 
+    /***** EXAMPLES *****/
+    .examples {
+      margin-top: 1.5em;
+    }
+    .examples h4 {
+      font-variant: small-caps;
+    }
+    .examples h4::after {
+      content: ": ";
+    }
+
+    .examples table {
+      margin-left: 0;
+      min-width: 50%;
+    }
+
     /***** NOTES *****/
 
     .note {
@@ -419,7 +435,7 @@ pre, .highlight /* Code blocks */
             {% for step in scenario.steps %}
               <li class="step {{step.keyword | strip | downcase}} {{step.result.status | strip | downcase }}">
                 <p>
-                  <strong class="keyword">{{step.keyword | strip}}</strong> {{step.name}}
+                  <strong class="keyword">{{step.keyword | strip}}</strong> {{step.name | format_variables: var }}
                 </p>
 
                 {% if step.doc_string %}
@@ -453,6 +469,35 @@ pre, .highlight /* Code blocks */
             {% endfor %}
           </ol>
         </div>
+        {% if scenario.examples %}
+        {% for example in scenario.examples %}
+        <section class="examples">
+          <header>
+            <h4>Examples</h4>
+          </header>
+          <table class="exampletable">
+            <thead>
+              <tr>
+                {% for cell in example.rows[0].cells %}
+                <th>{{ cell }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in example.rows %}
+              {% unless forloop.first %}
+              <tr>
+                {% for cell in row.cells %}
+                <td>{{ cell | escape_once }}</td>
+                {% endfor %}
+              </tr>
+              {% endunless %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </section>
+        {% endfor %}
+        {% endif %}
       </section>
       {% endfor %}
     {% endfor %}

@@ -36,6 +36,14 @@ No features have been specified.
   |{% for i in row.cells %}---|{% endfor %}{% endif %}{% endfor %}{% endindent %}{% endif %}
 {% endfor %}
 
+{% if scenario.examples %}
+{% for example in scenario.examples %}
+#### Examples
+{% for row in example.rows %}
+| {% for cell in row.cells %}{{ cell }} | {% endfor %}{% endfor %}
+{% endfor %}
+{% endif %}
+
 {% endfor %}
 
 {% endfor %}
